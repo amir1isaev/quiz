@@ -1,0 +1,96 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+  html,body {
+    @apply bg-zinc-100 dark:bg-black h-full;
+  }
+  #__next{
+    @apply h-full flex flex-col
+  } 
+}
+
+
+.input-button:checked,
+.input-button:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.input-button:checked + label,
+.input-button:not(:checked) + label
+{
+    display: inline-block;
+    @apply text-base leading-6 pl-8 relative cursor-pointer;
+}
+.input-button:checked + label:before,
+.input-button:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    @apply bg-zinc-100 dark:bg-zinc-700 border border-zinc-200 dark:border-zinc-600;
+}
+
+
+
+.checkbox-button:checked + label:before,
+.checkbox-button:not(:checked) + label:before {
+    border-radius: 5px;
+}
+
+.checkbox-button:checked + label:after,
+.checkbox-button:not(:checked) + label:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 8px;
+    width: 7.5px;
+    height: 15px;
+    border-right: 2.5px solid theme('colors.blue.600');
+    border-bottom: 2.5px solid  theme('colors.blue.600');
+    transform: rotate(45deg);
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.radio-button:checked + label:after,
+.radio-button:not(:checked) + label:after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    @apply bg-blue-600;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.radio-button:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.radio-button:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.checkbox-button:not(:checked) + label:after {
+  opacity: 0;
+
+  transform: scale(0) rotate(0deg);;
+}
+.checkbox-button:checked + label:after {
+  opacity: 1;
+
+  transform: scale(1) rotate(45deg);;
+}
+
