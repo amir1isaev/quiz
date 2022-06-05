@@ -23,7 +23,6 @@
 .input-button:checked + label,
 .input-button:not(:checked) + label
 {
-    display: inline-block;
     @apply text-base leading-6 pl-8 relative cursor-pointer;
 }
 .input-button:checked + label:before,

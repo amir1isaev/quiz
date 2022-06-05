@@ -1,5 +1,6 @@
 import { AnswersType } from '@/enums'
-import { Quiz } from 'src/core/interface'
+import { randomId } from '@/utils'
+import { Quiz, Segment } from 'src/core/interface'
 
 export const quizs: Quiz[] = [
 	{
@@ -71,4 +72,21 @@ export const quizs: Quiz[] = [
 	},
 ]
 
+export const newQuestion = () => ({
+	id: randomId(),
+	title: '',
+	rightAnswer: { id: 1, title: '' },
+	answers: {
+		type: AnswersType.CHECKBOXS,
+		arr: [{ id: randomId(), title: '' }],
+	},
+	enteredResponse: null,
+})
+
+export const answerTypeSegments: Segment[] = [
+	{ id: randomId(), slug: AnswersType.TEXT, title: 'Текст' },
+	{ id: randomId(), slug: AnswersType.CHECKBOXS, title: 'Несколько' },
+	{ id: randomId(), slug: AnswersType.RADIO_BUTTONS, title: 'Один' },
+	{ id: randomId(), slug: AnswersType.BUTTONS, title: 'Кнопки' },
+]
 export const quiz = quizs[0]

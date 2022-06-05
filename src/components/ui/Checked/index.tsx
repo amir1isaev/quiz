@@ -1,17 +1,18 @@
 import { FC, ReactNode } from 'react'
 
 const Checkbox: FC<IProps> = (p) => {
-	const { id, children } = p
+	const { id, children, name } = p
 	return (
-		<p>
-			<input className='input-button checkbox-button' type='checkbox' id={id} name='checkbox-group' />
+		<div>
+			<input className='input-button checkbox-button' type='checkbox' id={id} name={name} />
 			<label htmlFor={id}>{children}</label>
-		</p>
+		</div>
 	)
 }
 
 interface IProps {
 	id: string
-	children: ReactNode
+	name: string
+	children?: ReactNode
 }
 export default Checkbox

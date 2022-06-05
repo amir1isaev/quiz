@@ -9,7 +9,7 @@ const QuestionRadioButtons: FC<IProps> = (p) => {
 	return (
 		<div className='flex flex-col gap-2'>
 			{arr.map((item) => (
-				<Radio key={item.id} id={item.title + index + id}>
+				<Radio name={`${item.id}`} key={item.id} id={item.title + index + id}>
 					{item.title}
 				</Radio>
 			))}

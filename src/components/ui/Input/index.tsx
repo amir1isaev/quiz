@@ -6,7 +6,7 @@ const Input: FC<IProps> = (p) => {
 		<input
 			value={value}
 			onChange={(e) => onChange(e.target.value)}
-			className={['w-full outline-none bg-transparent', className].join(' ')}
+			className={['w-full bg-transparent outline-none focus:outline-blue-600/50 p-0.5 rounded', className].join(' ')}
 			placeholder={placeholder}
 		></input>
 	)

@@ -23,6 +23,7 @@
 			"@/containers/*": ["./src/containers/*"],
 			"@/components/*": ["./src/components/*"],
 			"@/interfaces": ["./src/core/interfaces"],
+			"@/utils": ["./src/core/utils"],
 			"@/enums": ["./src/core/enums"],
 			"@/context": ["./src/core/context"]
 		}

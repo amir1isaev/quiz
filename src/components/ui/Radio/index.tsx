@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react'
 
 const Radio: FC<IProps> = (p) => {
-	const { id, children } = p
+	const { id, children, name } = p
 	return (
 		<p>
-			<input type='radio' id={id} name='radio-group' className='input-button radio-button' />
+			<input type='radio' id={id} name={name} className='input-button radio-button' />
 			<label htmlFor={id}>{children}</label>
 		</p>
 	)
@@ -12,6 +12,7 @@ const Radio: FC<IProps> = (p) => {
 
 interface IProps {
 	id: string
-	children: ReactNode
+	name: string
+	children?: ReactNode
 }
 export default Radio

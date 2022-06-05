@@ -3,7 +3,7 @@ import Container from '../Container'
 
 const Main: FC<IProps> = ({ children }) => {
 	return (
-		<main className='flex-1 pt-20 '>
+		<main className='flex-1 pt-7 '>
 			<Container className='h-full'> {children} </Container>
 		</main>
 	)
