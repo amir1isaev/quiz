@@ -1,4 +1,5 @@
 import CreateButton from '@/components/create/CreateButton'
+import CreateHeader from '@/components/create/CreteHeader'
 import QuestionCreate from '@/components/create/QuestionCreate'
 import { AnswersType } from '@/enums'
 import Divider from '@/layout/Divider'
@@ -15,12 +16,26 @@ const Create: NextPage<IProps> = () => {
 	const [title, setTitle] = useState<string>('')
 	const [description, setDescription] = useState<string>('')
 	const [questions, setQuestions] = useState<Question[]>([newQuestion()])
-	const [rightAnswer, setRightAnswer] = useState<Answer | Answer[]>([])
 
 	const changeValueHandler = (value: string, id: number) => {
 		const newArr = questions.map((item) => {
 			if (item.id === id) {
 				item.title = value
+			}
+			return item
+		})
+		setQuestions(newArr)
+	}
+
+	const getRightAnswer = (quesId: number, id: number) => {
+		const newArr = questions.map((item) => {
+			if (item.id === quesId) {
+				const check = item.rightAnswer.find((answer) => answer === id)
+				if (check) {
+					item.rightAnswer = item.rightAnswer.filter((answer) => answer !== id)
+				} else {
+					item.rightAnswer = [...item.rightAnswer, id]
+				}
 			}
 			return item
 		})
@@ -67,6 +82,11 @@ const Create: NextPage<IProps> = () => {
 		setQuestions(newArr)
 	}
 
+	const destroyQuesHandler = (id: number) => {
+		const newArr = questions.filter((item) => item.id !== id)
+		setQuestions(newArr)
+	}
+
 	const createQuestionAnswer = (id: number) => {
 		const newArr = questions.map((item) => {
 			if (item.id === id) {
@@ -77,18 +97,24 @@ const Create: NextPage<IProps> = () => {
 		setQuestions(newArr)
 	}
 
+	const createQuiz = () => {
+		const quiz = {
+			title,
+			description,
+			questions,
+		}
+		console.log('quiz', quiz)
+	}
+
 	return (
-		<div className='flex flex-col gap-6 px-10 relative'>
-			<div className=''>
-				<Input value={title} onChange={(value) => setTitle(value)} className='font-bold text-2xl' placeholder='Загаловок' />
-				<div className='mt-2'>
-					<Textarea value={description} onChange={(value) => setDescription(value)} placeholder='Описание' />
-				</div>
-			</div>
+		<div className='flex flex-col gap-6  relative'>
+			<CreateHeader title={title} description={description} setDescription={setDescription} setTitle={setTitle} />
 			<Divider />
 			<div className='flex flex-col gap-4 '>
 				{questions.map((item, index) => (
 					<QuestionCreate
+						destroyQuesHandler={destroyQuesHandler}
+						getRightAnswer={getRightAnswer}
 						createQuestionAnswer={createQuestionAnswer}
 						changeTypeHandler={changeTypeHandler}
 						index={index + 1}
@@ -99,12 +125,12 @@ const Create: NextPage<IProps> = () => {
 						changeAnswerValueHandler={changeAnswerValueHandler}
 					/>
 				))}
-				<div className='absolute left-0 bottom-10'>
-					<CreateButton onClick={() => createQuestion()} />
-				</div>
+				{questions.length < 20 && <CreateButton onClick={() => createQuestion()} />}
 			</div>
 			<div className='mt-7'>
-				<Button className='bg-blue-600 dark:bg-blue-600 hover:bg-blue-800 text-white hover:dark:bg-blue-800'>Cоздать</Button>
+				<Button onClick={createQuiz} className='bg-blue-600 dark:bg-blue-600 hover:bg-blue-800 text-white hover:dark:bg-blue-800'>
+					Cоздать
+				</Button>
 			</div>
 		</div>
 	)

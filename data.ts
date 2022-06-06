@@ -11,7 +11,7 @@ export const quizs: Quiz[] = [
 			{
 				id: 1,
 				title: 'React - это библиотека',
-				rightAnswer: { id: 1, title: 'ДА' },
+				rightAnswer: [1],
 				answers: {
 					type: AnswersType.BUTTONS,
 					arr: [
@@ -24,7 +24,7 @@ export const quizs: Quiz[] = [
 			{
 				id: 2,
 				title: 'Что из это не являеться Хуком ?',
-				rightAnswer: { id: 1, title: 'ДА' },
+				rightAnswer: [2],
 				answers: {
 					type: AnswersType.RADIO_BUTTONS,
 					arr: [
@@ -39,11 +39,7 @@ export const quizs: Quiz[] = [
 			{
 				id: 3,
 				title: 'Что из это  являеться Хуком ?',
-				rightAnswer: [
-					{ id: 2, title: 'useSelector' },
-					{ id: 1, title: 'useMemo' },
-					{ id: 4, title: 'useDispath' },
-				],
+				rightAnswer: [2],
 				answers: {
 					type: AnswersType.CHECKBOXS,
 					arr: [
@@ -55,19 +51,6 @@ export const quizs: Quiz[] = [
 				},
 				enteredResponse: null,
 			},
-			{
-				id: 4,
-				title: 'Знаешь такую фигню как реакт ?',
-				rightAnswer: [
-					{ id: 1, title: 'Vue' },
-					{ id: 2, title: 'Angular' },
-				],
-				answers: {
-					type: AnswersType.TEXT,
-					arr: [],
-				},
-				enteredResponse: null,
-			},
 		],
 	},
 ]
@@ -75,7 +58,7 @@ export const quizs: Quiz[] = [
 export const newQuestion = () => ({
 	id: randomId(),
 	title: '',
-	rightAnswer: { id: 1, title: '' },
+	rightAnswer: [],
 	answers: {
 		type: AnswersType.CHECKBOXS,
 		arr: [{ id: randomId(), title: '' }],
@@ -84,9 +67,8 @@ export const newQuestion = () => ({
 })
 
 export const answerTypeSegments: Segment[] = [
-	{ id: randomId(), slug: AnswersType.TEXT, title: 'Текст' },
 	{ id: randomId(), slug: AnswersType.CHECKBOXS, title: 'Несколько' },
 	{ id: randomId(), slug: AnswersType.RADIO_BUTTONS, title: 'Один' },
 	{ id: randomId(), slug: AnswersType.BUTTONS, title: 'Кнопки' },
 ]
-export const quiz = quizs[0]
+export const oneQuiz = quizs[0]

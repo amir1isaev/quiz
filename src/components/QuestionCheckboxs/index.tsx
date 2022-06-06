@@ -5,12 +5,18 @@ import { FC } from 'react'
 import { Answer } from 'src/core/interface'
 
 const QuestionCheckboxs: FC<IProps> = (p) => {
-	const { arr, index, id } = p
+	const { arr,  id, enteredResponse, enteredResponseHandler } = p
 
 	return (
 		<div className='flex flex-col gap-2'>
 			{arr.map((item) => (
-				<Checkbox name={`${item.id}`} key={item.id} id={item.title + index + id}>
+				<Checkbox
+					onChange={() => enteredResponseHandler(id, item.id)}
+					checked={!!enteredResponse?.find((el) => el == item.id)}
+					key={item.id}
+					id={item.id.toString()}
+					name={'create_' + id.toString()}
+				>
 					{item.title}
 				</Checkbox>
 			))}
@@ -20,7 +26,8 @@ const QuestionCheckboxs: FC<IProps> = (p) => {
 
 interface IProps {
 	arr: Answer[]
-	index: number
 	id: number
+	enteredResponse: number[] | null
+	enteredResponseHandler: (id: number, answerId: number) => void
 }
 export default QuestionCheckboxs

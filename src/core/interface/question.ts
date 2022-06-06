@@ -7,7 +7,7 @@ interface Question {
 		type: string
 		arr: Answer[]
 	}
-	rightAnswer: Answer | Answer[]
-	enteredResponse: Answer | null | Answer[]
+	rightAnswer: number[]
+	enteredResponse: null | number[]
 }
 export default Question
